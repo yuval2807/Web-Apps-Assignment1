@@ -1,8 +1,22 @@
 const express = require("express");
 const router = express.Router();
+const postModel = require("../models/post");
 
-router.get("/", (req, res) => {
-  res.send("getAllPosts");
+router.get("/", async (req, res) => {
+  const owner = req.query.owner;
+
+  try {
+    if (owner) {
+      const posts = await postModel.find({ owner: owner });
+      res.status(200).send(posts);
+    } else {
+      const posts = await postModel.find();
+      res.status(200).send(posts);
+    }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+  //res.send("getAllPosts");
 });
 
 router.get("/:id", (req, res) => {
