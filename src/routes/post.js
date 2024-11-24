@@ -1,43 +1,64 @@
 const express = require("express");
 const router = express.Router();
 const postModel = require("../models/post");
+const {
+  getPostBySender,
+  getAllPosts,
+  getPostById,
+  addNewPost,
+  updatePostById,
+} = require("../controllers/post");
 
 router.get("/", async (req, res) => {
-  const owner = req.query.owner;
+  const sender = req.query.sender;
 
   try {
-    if (owner) {
-      const posts = await postModel.find({ owner: owner });
-      res.status(200).send(posts);
-    } else {
-      const posts = await postModel.find();
-      res.status(200).send(posts);
+    if (sender) res.status(200).send(await getPostBySender(sender));
+    else {
+      res.status(200).send(await getAllPosts());
     }
   } catch (err) {
     res.status(400).send(err);
   }
-  //res.send("getAllPosts");
 });
 
-router.get("/:id", (req, res) => {
-  res.send("getPostById");
+router.get("/:post_id", async (req, res) => {
+  const id = req.params.post_id;
+
+  try {
+    const post = await getPostById(id);
+    if (!post) return res.status(404).json({ message: "Post not found" });
+
+    res.status(200).send(post);
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
-router.get("/search", (req, res) => {
-  res.send("search");
+router.post("/", async (req, res) => {
+  const post = req.body;
+
+  try {
+    res.status(200).send(await addNewPost(post));
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
-//addPost
-router.post("/", (req, res) => {
-  res.send("addPost");
-});
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const post = req.body;
 
-router.put("/:id", (req, res) => {
-  res.send("updatePost");
-});
+  try {
+    const updatedPost = await updatePostById(id, post);
 
-router.get("/", (req, res) => {
-  res.send("hhh");
+    if (!updatedPost)
+      return res.status(404).json({ message: "Post not found" });
+
+    res.status(200).send(updatedPost);
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
 module.exports = router;

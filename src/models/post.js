@@ -7,11 +7,10 @@ const postSchema = new Schema({
     required: true,
   },
   content: String,
-  owner: {
+  sender: {
     type: String,
     required: true,
   },
 });
 
 module.exports = mongoose.model("Post", postSchema);
-// const postModel = mongoose.model("Post", postSchema);
