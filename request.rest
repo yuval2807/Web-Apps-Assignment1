@@ -1,7 +1,33 @@
+##post ----------------------------------------------------------------------------
+
 ###
 
 GET http://localhost:3000/post
 
 ###
 
-GET http://localhost:3000/post?owner=Daniel
+GET http://localhost:3000/post?sender=Yuval
+
+###
+
+GET http://localhost:3000/post/674391b336636d20875ec9f1
+
+###
+POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+    "sender": "Yuval",
+    "title": "Post 3",
+    "content": "This is post 2"
+}
+
+###
+PUT http://localhost:3000/post/674391b336636d20875ec9f1
+Content-Type: application/json
+
+{
+    "sender": "Yuval",
+    "title": "Post 5",
+    "content": "This is post 300"
+}
