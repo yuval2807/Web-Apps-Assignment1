@@ -4,4 +4,46 @@ GET http://localhost:3000/post
 
 ###
 
-GET http://localhost:3000/post?owner=Daniel
+GET http://localhost:3000/post?sender=Daniel
+
+###
+
+GET http://localhost:3000/comment
+
+###
+
+POST http://localhost:3000/comment
+Content-Type: application/json
+ 
+ {
+    "message": "This post is awesome",
+    "post": "6734d9ef7deba0e935a8a5f1",
+    "user": "674389a7c0680592b6760b57"
+ }
+
+###
+
+POST http://localhost:3000/post
+Content-Type: application/json
+
+ {
+    "sender": "674389a7c0680592b6760b57",
+    "title": "Post 4",
+    "content": "This is post 4"
+ }
+###
+
+
+GET http://localhost:3000/user
+
+###
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+ {
+    "name": "Yuval",
+    "username": "YuvalHic",
+    "password": "123456"
+ }
+###

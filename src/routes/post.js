@@ -3,14 +3,16 @@ const router = express.Router();
 const postModel = require("../models/post");
 
 router.get("/", async (req, res) => {
-  const owner = req.query.owner;
+  const sender = req.query.sender;
 
   try {
-    if (owner) {
-      const posts = await postModel.find({ owner: owner });
+    if (sender) {
+      const posts = await postModel
+        .find({ sender: sender })
+        .populate("sender", "name");
       res.status(200).send(posts);
     } else {
-      const posts = await postModel.find();
+      const posts = await postModel.find().populate("sender", "name");
       res.status(200).send(posts);
     }
   } catch (err) {
@@ -28,8 +30,15 @@ router.get("/search", (req, res) => {
 });
 
 //addPost
-router.post("/", (req, res) => {
-  res.send("addPost");
+router.post("/", async (req, res) => {
+  const post = req.body;
+  try {
+    const newPost = await postModel.create(post);
+    res.status(201).send(newPost);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+  //res.send("addPost");
 });
 
 router.put("/:id", (req, res) => {
