@@ -1,52 +1,64 @@
 const express = require("express");
 const router = express.Router();
 const postModel = require("../models/post");
+const {
+  getPostBySender,
+  getAllPosts,
+  getPostById,
+  addNewPost,
+  updatePostById,
+} = require("../controllers/post");
 
 router.get("/", async (req, res) => {
   const sender = req.query.sender;
 
   try {
-    if (sender) {
-      const posts = await postModel
-        .find({ sender: sender })
-        .populate("sender", "name");
-      res.status(200).send(posts);
-    } else {
-      const posts = await postModel.find().populate("sender", "name");
-      res.status(200).send(posts);
+    if (sender) res.status(200).send(await getPostBySender(sender));
+    else {
+      res.status(200).send(await getAllPosts());
     }
   } catch (err) {
     res.status(400).send(err);
   }
-  //res.send("getAllPosts");
 });
 
-router.get("/:id", (req, res) => {
-  res.send("getPostById");
-});
+router.get("/:post_id", async (req, res) => {
+  const id = req.params.post_id;
 
-router.get("/search", (req, res) => {
-  res.send("search");
-});
-
-//addPost
-router.post("/", async (req, res) => {
-  const post = req.body;
   try {
-    const newPost = await postModel.create(post);
-    res.status(201).send(newPost);
+    const post = await getPostById(id);
+    if (!post) return res.status(404).json({ message: "Post not found" });
+
+    res.status(200).send(post);
   } catch (err) {
     res.status(400).send(err);
   }
-  //res.send("addPost");
 });
 
-router.put("/:id", (req, res) => {
-  res.send("updatePost");
+router.post("/", async (req, res) => {
+  const post = req.body;
+
+  try {
+    res.status(200).send(await addNewPost(post));
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
-router.get("/", (req, res) => {
-  res.send("hhh");
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const post = req.body;
+
+  try {
+    const updatedPost = await updatePostById(id, post);
+
+    if (!updatedPost)
+      return res.status(404).json({ message: "Post not found" });
+
+    res.status(200).send(updatedPost);
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
 module.exports = router;
