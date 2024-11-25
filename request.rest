@@ -6,28 +6,64 @@ GET http://localhost:3000/post
 
 ###
 
-GET http://localhost:3000/post?sender=Yuval
+GET http://localhost:3000/post?sender=674389a7c0680592b6760b57
 
 ###
 
-GET http://localhost:3000/post/674391b336636d20875ec9f1
+GET http://localhost:3000/post/67437e0bd971209be952c7da
 
 ###
 POST http://localhost:3000/post
 Content-Type: application/json
 
 {
-    "sender": "Yuval",
+    "sender": "674389a7c0680592b6760b57",
     "title": "Post 3",
     "content": "This is post 2"
 }
 
 ###
-PUT http://localhost:3000/post/674391b336636d20875ec9f1
+PUT http://localhost:3000/post/67437e0bd971209be952c7da
 Content-Type: application/json
 
 {
-    "sender": "Yuval",
+    "sender": "674389a7c0680592b6760b57",
     "title": "Post 5",
     "content": "This is post 300"
 }
+
+
+##comment ----------------------------------------------------------------------------
+
+###
+
+GET http://localhost:3000/comment
+
+###
+
+GET http://localhost:3000/comment/67438d47ef31dc2a80b19cfd
+
+###
+POST http://localhost:3000/comment
+Content-Type: application/json
+
+{
+    "message": "This is comment 1",
+    "post": "6734d9ef7deba0e935a8a5f1",
+    "user": "674389a7c0680592b6760b57"
+}
+
+###
+
+PUT http://localhost:3000/comment/67439b04b236759199524f0f
+Content-Type: application/json
+
+{
+    "message": "This is an updated comment agian",
+    "post": "6734d9ef7deba0e935a8a5f1",
+    "user": "674389a7c0680592b6760b57"
+}
+
+###
+
+DELETE http://localhost:3000/comment/67437e0bd971209be952c7da
