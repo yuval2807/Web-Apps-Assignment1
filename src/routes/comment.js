@@ -14,9 +14,10 @@ router.get("/", async (req, res) => {
   const postId = req.query.postId;
 
   try {
-    if (postId) res.status(200).send(getCommentsByPostId(postId));
-
-    res.status(200).send(await getAllComments());
+    if (postId) res.status(200).send(await getCommentsByPostId(postId));
+    else {
+      res.status(200).send(await getAllComments());
+    }
   } catch (err) {
     res.status(400).send(err);
   }
@@ -30,19 +31,6 @@ router.get("/:id", async (req, res) => {
     if (!comment) return res.status(404).json({ message: "Comment not found" });
 
     res.status(200).send(comment);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-router.get("/:post_id", async (req, res) => {
-  const postId = req.params.post_id;
-
-  try {
-    const post = await getCommentsByPostId(postId);
-    if (!post) return res.status(404).json({ message: "Post not found" });
-
-    res.status(200).send(post);
   } catch (err) {
     res.status(400).send(err);
   }

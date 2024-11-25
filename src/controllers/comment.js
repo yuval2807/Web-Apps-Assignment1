@@ -4,25 +4,7 @@ const getAllComments = () => commentModel.find();
 
 const getCommentById = (id) => commentModel.findById(id);
 
-const getCommentsByPostId =(postId)=>commentModel.aggregate([
-  { $match: { post: mongoose.Types.ObjectId(postId) } }, // Filter by post ID
-  {
-    $lookup: {
-      from: "posts", // Collection to join (Post)
-      localField: "post",
-      foreignField: "_id",
-      // as: "postDetails",
-    },
-  },
-  {
-    $lookup: {
-      from: "users", // Collection to join (User)
-      localField: "user",
-      foreignField: "_id",
-      // as: "userDetails",
-    },
-  },
-])
+const getCommentsByPostId = (post) => commentModel.find({ post });
 
 const addNewComment = (comment) => commentModel.create(comment);
 
@@ -37,5 +19,5 @@ module.exports = {
   addNewComment,
   updateCommentById,
   deleteCommentById,
-  getCommentsByPostId
+  getCommentsByPostId,
 };
