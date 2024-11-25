@@ -10,7 +10,7 @@ GET http://localhost:3000/post?sender=674389a7c0680592b6760b57
 
 ###
 
-GET http://localhost:3000/post/67437e0bd971209be952c7da
+GET http://localhost:3000/post/67438271de1accd931a9171a
 
 ###
 POST http://localhost:3000/post
@@ -42,14 +42,17 @@ GET http://localhost:3000/comment
 ###
 
 GET http://localhost:3000/comment/67438d47ef31dc2a80b19cfd
+###
+
+GET http://localhost:3000/comment?postId=67442097c150df7d32594b57
 
 ###
 POST http://localhost:3000/comment
 Content-Type: application/json
 
 {
-    "message": "This is comment 1",
-    "post": "6734d9ef7deba0e935a8a5f1",
+    "message": "This is comment 2",
+    "post": "67442097c150df7d32594b57",
     "user": "674389a7c0680592b6760b57"
 }
 

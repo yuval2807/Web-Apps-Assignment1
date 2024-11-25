@@ -7,11 +7,17 @@ const {
   addNewComment,
   updateCommentById,
   deleteCommentById,
+  getCommentsByPostId,
 } = require("../controllers/comment");
 
 router.get("/", async (req, res) => {
+  const postId = req.query.postId;
+
   try {
-    res.status(200).send(await getAllComments());
+    if (postId) res.status(200).send(await getCommentsByPostId(postId));
+    else {
+      res.status(200).send(await getAllComments());
+    }
   } catch (err) {
     res.status(400).send(err);
   }
