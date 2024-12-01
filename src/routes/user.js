@@ -1,38 +1,68 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/user");
+const {
+  getAllUsers,
+  getUserById,
+  addNewUser,
+  updateUserById,
+} = require("../controllers/user");
 
 router.get("/", async (req, res) => {
   try {
-    const users = await userModel.find();
-    res.status(200).send(users);
+    res.status(200).send(await getAllUsers());
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
-// router.get("/:id", (req, res) => {
-//   res.send("getPostById");
-// });
+router.get("/login", async (req, res) => {
+  const userDetails = req.body;
 
-//addUser
-router.post("/", async (req, res) => {
-  console.log(req.body);
-  const user = req.body;
   try {
-    const newUser = await userModel.create(user);
-    res.status(201).send(user);
+    res.status(200).send(await getAllPosts());
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
-// router.put("/:id", (req, res) => {
-//   res.send("updateComment");
-// });
+router.get("/:user_id", async (req, res) => {
+  const id = req.params.user_id;
 
-// router.delete("/:id", (req, res) => {
-//   res.send("deleteComment");
-// });
+  try {
+    const user = await getUserById(id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).send(user);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.post("/", async (req, res) => {
+  const user = req.body;
+
+  try {
+    res.status(200).send(await addNewUser(user));
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = req.body;
+
+  try {
+    const updatedUser = await updateUserById(id, user);
+
+    if (!updatedUser)
+      return res.status(404).json({ message: "User not found" });
+
+    res.status(200).send(updatedUser);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 module.exports = router;

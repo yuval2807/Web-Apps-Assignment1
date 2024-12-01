@@ -70,3 +70,30 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/comment/67437e0bd971209be952c7da
+
+
+##user ----------------------------------------------------------------------------
+
+###
+
+GET http://localhost:3000/user
+
+###
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "email": "ccc@gmail.com",
+    "name": "ccc",
+    "password": "ccc"
+}
+
+###
+PUT http://localhost:3000/user/674cce94f4a4ca033452c18f
+Content-Type: application/json
+
+{
+    "email": "ccc@gmail.com",
+    "name": "ccc1",
+    "password": "ccc"
+}
