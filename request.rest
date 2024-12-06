@@ -3,18 +3,22 @@
 ###
 
 GET http://localhost:3000/post
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 ###
 
 GET http://localhost:3000/post?sender=674389a7c0680592b6760b57
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 ###
 
 GET http://localhost:3000/post/67438271de1accd931a9171a
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 ###
 POST http://localhost:3000/post
 Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 {
     "sender": "674389a7c0680592b6760b57",
@@ -25,6 +29,7 @@ Content-Type: application/json
 ###
 PUT http://localhost:3000/post/67437e0bd971209be952c7da
 Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 {
     "sender": "674389a7c0680592b6760b57",
@@ -38,17 +43,23 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/comment
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
 
 ###
 
 GET http://localhost:3000/comment/67438d47ef31dc2a80b19cfd
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
 ###
 
 GET http://localhost:3000/comment?postId=67442097c150df7d32594b57
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 ###
 POST http://localhost:3000/comment
 Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 {
     "message": "This is comment 2",
@@ -70,3 +81,49 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/comment/67437e0bd971209be952c7da
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+
+##user ----------------------------------------------------------------------------
+
+
+###
+
+GET http://localhost:3000/user
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+//add headers
+
+###
+
+GET http://localhost:3000/login
+Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+{
+    "email": "aaa@gmail.com",
+    "password": "aaa"
+}
+
+
+###
+POST http://localhost:3000/user
+Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+{
+    "email": "ccc@gmail.com",
+    "name": "ccc",
+    "password": "ccc"
+}
+
+###
+PUT http://localhost:3000/user/
+Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+{
+    "email": "ccc@gmail.com",
+    "name": "ccc1",
+    "password": "ccc"
+}

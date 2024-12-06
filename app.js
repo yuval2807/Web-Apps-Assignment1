@@ -2,6 +2,7 @@ const express = require("express");
 const postRoutes = require("./src/routes/post");
 const commentRoutes = require("./src/routes/comment");
 const userRoutes = require("./src/routes/user");
+const loginRoutes = require("./src/routes/login");
 const connectToDatabase = require("./src/config/db");
 const app = express();
 const port = 3000;
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes);
 app.use("/user", userRoutes);
+app.use("/login", loginRoutes);
 
 app.listen(port, () => {
   console.log(`lisening at http:/localhost:${port}`);

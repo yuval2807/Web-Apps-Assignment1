@@ -9,6 +9,9 @@ const {
   deleteCommentById,
   getCommentsByPostId,
 } = require("../controllers/comment");
+const authenticateToken = require("../middleware/jwt");
+
+router.use(authenticateToken);
 
 router.get("/", async (req, res) => {
   const postId = req.query.postId;
