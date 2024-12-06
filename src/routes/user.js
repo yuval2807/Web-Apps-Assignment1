@@ -1,26 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../models/user");
 const {
   getAllUsers,
   getUserById,
   addNewUser,
   updateUserById,
 } = require("../controllers/user");
+const authenticateToken = require("../middleware/jwt");
+
+router.use(authenticateToken);
 
 router.get("/", async (req, res) => {
   try {
     res.status(200).send(await getAllUsers());
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-router.get("/login", async (req, res) => {
-  const userDetails = req.body;
-
-  try {
-    res.status(200).send(await getAllPosts());
   } catch (err) {
     res.status(400).send(err);
   }

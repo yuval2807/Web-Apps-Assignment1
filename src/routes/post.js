@@ -8,6 +8,9 @@ const {
   addNewPost,
   updatePostById,
 } = require("../controllers/post");
+const authenticateToken = require("../middleware/jwt");
+
+router.use(authenticateToken);
 
 router.get("/", async (req, res) => {
   const sender = req.query.sender;
