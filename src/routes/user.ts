@@ -1,8 +1,9 @@
-const express = require("express");
-const router = express.Router();
-const userModel = require("../models/user");
+import express, { Request, Response } from "express";
+import userModel from "../models/user";
 
-router.get("/", async (req, res) => {
+const router = express.Router();
+
+router.get("/", async (req: Request, res: Response) => {
   try {
     const users = await userModel.find();
     res.status(200).send(users);
@@ -16,12 +17,12 @@ router.get("/", async (req, res) => {
 // });
 
 //addUser
-router.post("/", async (req, res) => {
+router.post("/", async (req: Request, res: Response) => {
   console.log(req.body);
   const user = req.body;
   try {
     const newUser = await userModel.create(user);
-    res.status(201).send(user);
+    res.status(201).send(newUser);
   } catch (err) {
     res.status(400).send(err);
   }
@@ -35,4 +36,4 @@ router.post("/", async (req, res) => {
 //   res.send("deleteComment");
 // });
 
-module.exports = router;
+export default router;
