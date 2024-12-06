@@ -1,15 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const postModel = require("../models/post");
-const {
+import express, { Request, Response } from "express";
+import {
   getPostBySender,
   getAllPosts,
   getPostById,
   addNewPost,
   updatePostById,
-} = require("../controllers/post");
+} from "../controllers/post";
 
-router.get("/", async (req, res) => {
+const router = express.Router();
+
+router.get("/", async (req: Request, res: Response) => {
   const sender = req.query.sender;
 
   try {
@@ -22,20 +22,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:post_id", async (req, res) => {
+router.get("/:post_id", async (req: Request, res: Response) => {
   const id = req.params.post_id;
 
   try {
     const post = await getPostById(id);
-    if (!post) return res.status(404).json({ message: "Post not found" });
-
-    res.status(200).send(post);
+    if (!post) res.status(404).send({ message: "Post not found" });
+    else res.status(200).send(post);
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", async (req: Request, res: Response) => {
   const post = req.body;
 
   try {
@@ -45,20 +44,18 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   const post = req.body;
 
   try {
     const updatedPost = await updatePostById(id, post);
 
-    if (!updatedPost)
-      return res.status(404).json({ message: "Post not found" });
-
-    res.status(200).send(updatedPost);
+    if (!updatedPost) res.status(404).json({ message: "Post not found" });
+    else res.status(200).send(updatedPost);
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
-module.exports = router;
+export default router;

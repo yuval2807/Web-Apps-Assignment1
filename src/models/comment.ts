@@ -1,9 +1,16 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const User = require("./user");
-const Post = require("./post");
+import mongoose from "mongoose";
+import User from "./user";
+import Post from "./post";
 
-const commentSchema = new Schema({
+const Schema = mongoose.Schema;
+
+export interface IComment {
+  message: string;
+  post: typeof Post;
+  user: typeof User;
+}
+
+const commentSchema = new Schema<IComment>({
   message: {
     type: String,
     required: true,
@@ -20,4 +27,5 @@ const commentSchema = new Schema({
   }, // Reference to User
 });
 
-module.exports = mongoose.model("Comment", commentSchema);
+const commentModel = mongoose.model("Comment", commentSchema);
+export default commentModel;
