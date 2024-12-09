@@ -1,5 +1,5 @@
-const userModel = require("../models/user");
-const { generateAccessToken } = require("../utils/jwt");
+import userModel from "../models/user";
+import { generateAccessToken } from "../utils/jwt";
 
 const getAllUsers = () => userModel.find();
 
@@ -10,7 +10,8 @@ const addNewUser = (user) => userModel.create(user);
 const updateUserById = (id, { email, name, password }) =>
   userModel.findByIdAndUpdate(id, { email, name, password }, { new: true });
 
-const login = async (email, password) => {
+const login = async (email: string, password: string) => {
+  console.log(email, password);
   const user = await userModel.findOne({ email });
   if (!user) throw new Error("User not found");
 
@@ -21,10 +22,4 @@ const login = async (email, password) => {
   return { accessToken };
 };
 
-module.exports = {
-  getAllUsers,
-  getUserById,
-  addNewUser,
-  updateUserById,
-  login,
-};
+export { getAllUsers, getUserById, addNewUser, updateUserById, login };

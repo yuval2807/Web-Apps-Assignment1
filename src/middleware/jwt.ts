@@ -1,4 +1,5 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+//const jwt = require("jsonwebtoken");
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -15,6 +16,7 @@ const authenticateToken = (req, res, next) => {
     req.user = user; // הוספת פרטי המשתמש לבקשה
     next();
   });
+  //next();
 };
 
-module.exports = authenticateToken;
+export default authenticateToken;
