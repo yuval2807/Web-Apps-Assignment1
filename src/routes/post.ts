@@ -6,8 +6,12 @@ import {
   addNewPost,
   updatePostById,
 } from "../controllers/post";
+import authenticateToken from "../middleware/jwt";
+//const authenticateToken = require("../middleware/jwt");
 
 const router = express.Router();
+
+router.use(authenticateToken);
 
 router.get("/", async (req: Request, res: Response) => {
   const sender = req.query.sender;

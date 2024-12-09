@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node ./dist/app.js",
-    "dev": "nodemon ./src/app.ts"
+    "dev": "nodemon ./dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,14 +20,17 @@
   },
   "homepage": "https://github.com/yuval2807/Web-Apps-Assignment-1#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",
+    "@types/jsonwebtoken": "^9.0.7",
     "nodemon": "^3.1.7",
     "typescript": "^5.7.2"
   }

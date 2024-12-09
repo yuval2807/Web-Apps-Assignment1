@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 export interface IUser {
   name: string;
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -12,7 +12,7 @@ const userSchema = new Schema<IUser>({
     type: String,
     required: true,
   },
-  username: {
+  email: {
     type: String,
     required: true,
     unique: true,

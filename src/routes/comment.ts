@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 const router = express.Router();
 import commentModel from "../models/comment";
-//const commentModel = require("../models/comment");
 import {
   getAllComments,
   getCommentById,
@@ -10,7 +9,6 @@ import {
   deleteCommentById,
   getCommentsByPostId,
 } from "../controllers/comment";
-import { ObjectId } from "mongoose";
 
 router.get("/", async (req: Request, res: Response) => {
   const postId = req.query.postId;
