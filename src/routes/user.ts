@@ -8,7 +8,6 @@ import {
 } from "../controllers/user";
 
 import authenticateToken from "../middleware/jwt";
-//const authenticateToken = require("../middleware/jwt");
 
 const router = express.Router();
 

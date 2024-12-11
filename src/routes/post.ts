@@ -7,7 +7,6 @@ import {
   updatePostById,
 } from "../controllers/post";
 import authenticateToken from "../middleware/jwt";
-//const authenticateToken = require("../middleware/jwt");
 
 const router = express.Router();
 
