@@ -1,8 +1,8 @@
-const express = require("express");
+import express, { Request, Response } from "express";
 const router = express.Router();
-const { login } = require("../controllers/user");
+import { login } from "../controllers/user";
 
-router.get("/", async (req, res) => {
+router.get("/", async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
@@ -12,4 +12,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
