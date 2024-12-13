@@ -1,3 +1,64 @@
+##auth ----------------------------------------------------------------------------
+
+###
+
+GET http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "aaa@gmail.com",
+    "password": "aaa"
+}
+
+###
+
+GET http://localhost:3000/auth/logout
+Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzQxMDYxODUsImV4cCI6MTczNDcxMDk4NX0.1394jXyf8eBumordDXm1AaCNQiR3sdOyo05DffAfhgA
+
+##user ----------------------------------------------------------------------------
+
+
+###
+
+GET http://localhost:3000/user
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzQxMDYyMjUsImV4cCI6MTczNDM2NTQyNX0.eNJLOIWGkcMVyXUJI-qhzPcwJhJ8mX3NP83GiKbhfN8
+
+//add headers
+
+###
+
+GET http://localhost:3000/login
+Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+{
+    "email": "aaa@gmail.com",
+    "password": "aaa"
+}
+
+
+###
+POST http://localhost:3000/user
+Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+{
+    "email": "ccc@gmail.com",
+    "name": "ccc",
+    "password": "ccc"
+}
+
+###
+PUT http://localhost:3000/user/
+Content-Type: application/json
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
+
+{
+    "email": "ccc@gmail.com",
+    "name": "ccc1",
+    "password": "ccc"
+}
 ##post ----------------------------------------------------------------------------
 
 ###
@@ -84,46 +145,3 @@ DELETE http://localhost:3000/comment/67437e0bd971209be952c7da
 Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
 
 
-##user ----------------------------------------------------------------------------
-
-
-###
-
-GET http://localhost:3000/user
-Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
-
-//add headers
-
-###
-
-GET http://localhost:3000/login
-Content-Type: application/json
-Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
-
-{
-    "email": "aaa@gmail.com",
-    "password": "aaa"
-}
-
-
-###
-POST http://localhost:3000/user
-Content-Type: application/json
-Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
-
-{
-    "email": "ccc@gmail.com",
-    "name": "ccc",
-    "password": "ccc"
-}
-
-###
-PUT http://localhost:3000/user/
-Content-Type: application/json
-Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzM0ODA2ODAsImV4cCI6MTczNDA4NTQ4MH0.5QOtHTx4EneCAA1Mu46W-yHGFud1qjyhU7FLSV6r1bk
-
-{
-    "email": "ccc@gmail.com",
-    "name": "ccc1",
-    "password": "ccc"
-}
