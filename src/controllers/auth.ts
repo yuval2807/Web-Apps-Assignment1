@@ -24,20 +24,20 @@ export const login = async (
   return { accessToken, refreshToken };
 };
 
-export const logout = async (token) => {
-  // jwt.verify(token, process.env.JWT_REFRESH_SECRET, async (err, userInfo) => {
-  //   if (err) throw new Error("Invalid or expired token");
+export const logout = async (refreshToken) => {
+  const user = await verifyRefreshToken(refreshToken);
+  if (!user) throw new Error("User not found");
 
-  //   const user = await getUserById(userInfo.userId);
+  return updateUserTokenById(
+    user.id,
+    user.tokens.filter((token) => token !== refreshToken)
+  );
+};
 
-  //   if (!user) throw new Error("User not found");
+export const refresh = async (refreshToken) => {
+  const user = await verifyRefreshToken(refreshToken);
+  if (!user) throw new Error("User not found");
 
-  //   if (!user.tokens.includes(token)) {
-  //     user.tokens = [];
-  //     updateRefreshToken(user, null);
-  //   }
-  const user = await verifyRefreshToken(token);
-  // const removedToken = user.tokens.splice(user.tokens.indexOf(token), 1);
-  // updateUserTokenById(user.id, removedToken);
-  // });
+  const newToken = generateRefreshToken(user._id);
+  return updateRefreshToken(user, newToken);
 };

@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 const router = express.Router();
-import { login, logout } from "../controllers/auth";
+import { login, logout, refresh } from "../controllers/auth";
 import { addNewUser } from "../controllers/user";
 
 router.get("/login", async (req: Request, res: Response) => {
@@ -15,10 +15,21 @@ router.get("/login", async (req: Request, res: Response) => {
 
 router.get("/logout", async (req: Request, res: Response) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1]; // פורמט: "Bearer <token>"
+  const refreshToken = authHeader && authHeader.split(" ")[1]; // פורמט: "Bearer <token>"
 
   try {
-    res.status(200).send(await logout(token));
+    res.status(200).send(await logout(refreshToken));
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.get("/refresh", async (req: Request, res: Response) => {
+  const authHeader = req.headers["authorization"];
+  const refreshToken = authHeader && authHeader.split(" ")[1]; // פורמט: "Bearer <token>"
+
+  try {
+    res.status(200).send(await refresh(refreshToken));
   } catch (err) {
     res.status(400).send(err);
   }

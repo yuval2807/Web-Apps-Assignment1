@@ -1,11 +1,5 @@
 import express, { Request, Response } from "express";
-import userModel from "../models/user";
-import {
-  getAllUsers,
-  getUserById,
-  addNewUser,
-  updateUserById,
-} from "../controllers/user";
+import { getAllUsers, getUserById, updateUserById } from "../controllers/user";
 
 import authenticateToken from "../middleware/jwt";
 

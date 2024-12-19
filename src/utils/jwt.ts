@@ -5,7 +5,7 @@ import { tUser } from "../models/user";
 export const updateRefreshToken = async (user, refreshToken: string) => {
   if (refreshToken) user.tokens.push(refreshToken);
   const updatedTokens = !!refreshToken ? user.tokens : [];
-  await updateUserTokenById(user.id, updatedTokens);
+  return await updateUserTokenById(user.id, updatedTokens);
 };
 
 export const generateAccessToken = (userId) =>
@@ -42,10 +42,7 @@ export const verifyRefreshToken = (refreshToken: string) => {
             updateRefreshToken(user, null);
             throw new Error("Invalid or expired token");
           }
-          await updateUserTokenById(
-            user.id,
-            user.tokens.filter((token) => token !== refreshToken)
-          );
+
           resolve(user);
         } catch (err) {
           new Error("Invalid or expired token");
