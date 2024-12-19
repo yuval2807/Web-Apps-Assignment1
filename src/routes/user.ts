@@ -33,28 +33,6 @@ router.get("/:user_id", async (req: Request, res: Response) => {
   }
 });
 
-//addUser
-router.post("/", async (req: Request, res: Response) => {
-  console.log(req.body);
-  const user = req.body;
-  try {
-    const newUser = await userModel.create(user);
-    res.status(201).send(newUser);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-router.post("/", async (req: Request, res: Response) => {
-  const user = req.body;
-
-  try {
-    res.status(200).send(await addNewUser(user));
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
 router.put("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   const user = req.body;

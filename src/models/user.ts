@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Types } from "mongoose";
 const Schema = mongoose.Schema;
 
 export interface IUser {
@@ -7,6 +7,14 @@ export interface IUser {
   password: string;
   tokens: string[];
 }
+
+export type tUser = Document<unknown, {}, IUser> &
+  IUser &
+  Required<{
+    _id: Types.ObjectId;
+  }> & {
+    __v: number;
+  };
 
 const userSchema = new Schema<IUser>({
   name: {

@@ -14,7 +14,7 @@ Content-Type: application/json
 
 GET http://localhost:3000/auth/logout
 Content-Type: application/json
-Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzQxMDYxODUsImV4cCI6MTczNDcxMDk4NX0.1394jXyf8eBumordDXm1AaCNQiR3sdOyo05DffAfhgA
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzQ2MDk3MTksImV4cCI6MTczNTIxNDUxOX0.-e99JTdejVM3blNJC87-cr3x1PTvqC53ppjfwdPk8O0
 
 ##user ----------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2
 ###
 
 GET http://localhost:3000/user
-Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzQxMDYyMjUsImV4cCI6MTczNDM2NTQyNX0.eNJLOIWGkcMVyXUJI-qhzPcwJhJ8mX3NP83GiKbhfN8
+Authorization: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjY2JiM2Y0YTRjYTAzMzQ1MmMxN2YiLCJpYXQiOjE3MzQ2MDc0MzcsImV4cCI6MTczNDg2NjYzN30.zsDzjd7yxATERHM6NqkUw95u62AeXeniHulzIuplHCo
 
 //add headers
 
