@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import postRoutes from "./src/routes/post";
 import commentRoutes from "./src/routes/comment";
 import userRoutes from "./src/routes/user";
-import loginRoutes from "./src/routes/login";
+import authRoutes from "./src/routes/auth";
 import connectToDatabase from "./src/config/db";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes);
 app.use("/user", userRoutes);
-app.use("/login", loginRoutes);
+app.use("/auth", authRoutes);
 
 app.listen(port, () => {
   console.log(`lisening at http:/localhost:${port}`);

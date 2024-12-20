@@ -1,11 +1,20 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Types } from "mongoose";
 const Schema = mongoose.Schema;
 
 export interface IUser {
   name: string;
   email: string;
   password: string;
+  tokens: string[];
 }
+
+export type tUser = Document<unknown, {}, IUser> &
+  IUser &
+  Required<{
+    _id: Types.ObjectId;
+  }> & {
+    __v: number;
+  };
 
 const userSchema = new Schema<IUser>({
   name: {
@@ -20,6 +29,9 @@ const userSchema = new Schema<IUser>({
   password: {
     type: String,
     required: true,
+  },
+  tokens: {
+    type: [String],
   },
 });
 
