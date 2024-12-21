@@ -1,26 +1,11 @@
-import express, { Express } from "express";
-import postRoutes from "./src/routes/post";
-import commentRoutes from "./src/routes/comment";
-import userRoutes from "./src/routes/user";
-import authRoutes from "./src/routes/auth";
-import connectToDatabase from "./src/config/db";
-import bodyParser from "body-parser";
-import dotenv from "dotenv";
+import appInit from "./server";
+const port = process.env.PORT;
 
-dotenv.config();
-const app: Express = express();
-const port = process.env.PORT || 3000;
+const tmpFunc = async () => {
+  const app = await appInit();
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  });
+};
 
-connectToDatabase();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use("/post", postRoutes);
-app.use("/comment", commentRoutes);
-app.use("/user", userRoutes);
-app.use("/auth", authRoutes);
-
-app.listen(port, () => {
-  console.log(`lisening at http:/localhost:${port}`);
-});
+tmpFunc();
