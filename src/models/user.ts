@@ -5,7 +5,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  tokens: string[];
+  tokens?: string[];
 }
 
 export type tUser = Document<unknown, {}, IUser> &

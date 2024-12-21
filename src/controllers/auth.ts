@@ -21,7 +21,7 @@ export const login = async (
   const refreshToken = generateRefreshToken(user.id);
   updateRefreshToken(user, refreshToken);
 
-  return { accessToken, refreshToken };
+  return { accessToken, refreshToken, _id: user._id };
 };
 
 export const logout = async (refreshToken) => {
