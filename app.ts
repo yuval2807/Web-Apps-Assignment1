@@ -6,12 +6,34 @@ import authRoutes from "./src/routes/auth";
 import connectToDatabase from "./src/config/db";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsDoc from "swagger-jsdoc";
+
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Web dev 2024 api",
+      description: "Blog API Information",
+      version: "1.0.0",
+      contact: {
+        name: "Amazing Developer",
+      },
+      servers: [{ url: "http://localhost:" + process.env.PORT }],
+    },
+  },
+  apis: ["./src/routes/*.ts"],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
 connectToDatabase();
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
