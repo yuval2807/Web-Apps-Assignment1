@@ -125,6 +125,33 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @swagger
+ * /comment/{comment_id}:
+ *   get:
+ *       summary: Retrieve a comment by id
+ *       tags: [Comments]
+ *       security:
+ *           - bearerAuth: []
+ *       parameters:
+ *          - name: id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: string
+ *       responses:
+ *           200:
+ *               description: A specific comment
+ *               content:
+ *                   application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Comment'
+ *           400:
+ *              description: Bad request
+ *           404:
+ *              description: Not Found
+ */
+
 router.post("/", async (req: Request, res: Response) => {
   const comment = req.body;
   try {
@@ -133,6 +160,33 @@ router.post("/", async (req: Request, res: Response) => {
     res.status(400).send(err);
   }
 });
+
+/**
+ * @swagger
+ * /comment/{comment_id}:
+ *   put:
+ *       summary: Update a comment by id
+ *       tags: [Comments]
+ *       security:
+ *           - bearerAuth: []
+ *       parameters:
+ *          - name: id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: string
+ *       responses:
+ *           200:
+ *               description: A specific comment
+ *               content:
+ *                   application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Comment'
+ *           400:
+ *              description: Bad request
+ *           404:
+ *              description: Not Found
+ */
 
 router.put("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -147,6 +201,33 @@ router.put("/:id", async (req: Request, res: Response) => {
     res.status(400).send(err);
   }
 });
+
+/**
+ * @swagger
+ * /comment/{comment_id}:
+ *   delete:
+ *       summary: Delete a comment by id
+ *       tags: [Comments]
+ *       security:
+ *           - bearerAuth: []
+ *       parameters:
+ *          - name: id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: string
+ *       responses:
+ *           200:
+ *               description: A specific comment
+ *               content:
+ *                   application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Comment'
+ *           400:
+ *              description: Bad request
+ *           404:
+ *              description: Not Found
+ */
 
 router.delete("/:id", async (req: Request, res: Response) => {
   const commentId = req.params.id;
