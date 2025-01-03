@@ -36,15 +36,23 @@ import {
  *              title: 'example message'
  *              post: 'hbjjgsiayhnnsh'
  *              user: 'adraaggayajala'
- *       PostBody:
+ *       CommentsBody:
  *           type: object
  *           required:
  *              - message
+ *              - post
+ *              - user
  *           properties:
  *               message:
  *                   type: string
+ *               post:
+ *                   type: string
+ *               user:
+ *                   type: string
  *           example:
- *              message: 'example message'
+ *              title: 'example message'
+ *              post: 'hbjjgsiayhnnsh'
+ *              user: 'adraaggayajala'
  */
 
 /**
@@ -88,7 +96,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /comment/{comment_id}:
+ * /comment/{id}:
  *   get:
  *       summary: Retrieve a comment by id
  *       tags: [Comments]
@@ -106,7 +114,7 @@ router.get("/", async (req: Request, res: Response) => {
  *               content:
  *                   application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/Comment'
+ *                          $ref: '#/components/schemas/Comments'
  *           400:
  *              description: Bad request
  *           404:
@@ -127,25 +135,25 @@ router.get("/:id", async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /comment/{comment_id}:
- *   get:
- *       summary: Retrieve a comment by id
+ * /comment:
+ *   post:
+ *       summary: craete new comment
  *       tags: [Comments]
  *       security:
  *           - bearerAuth: []
- *       parameters:
- *          - name: id
- *            in: path
- *            required: true
- *            schema:
- *              type: string
+ *       requestBody:
+ *          required: true
+ *          content:
+ *             application/json:
+ *                schema:
+ *                  $ref: '#/components/schemas/CommentsBody'
  *       responses:
  *           200:
  *               description: A specific comment
  *               content:
  *                   application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/Comment'
+ *                          $ref: '#/components/schemas/Comments'
  *           400:
  *              description: Bad request
  *           404:
@@ -181,7 +189,7 @@ router.post("/", async (req: Request, res: Response) => {
  *               content:
  *                   application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/Comment'
+ *                          $ref: '#/components/schemas/Comments'
  *           400:
  *              description: Bad request
  *           404:
@@ -222,7 +230,7 @@ router.put("/:id", async (req: Request, res: Response) => {
  *               content:
  *                   application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/Comment'
+ *                          $ref: '#/components/schemas/Comments'
  *           400:
  *              description: Bad request
  *           404:
