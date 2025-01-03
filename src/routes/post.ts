@@ -47,6 +47,20 @@ import authenticateToken from "../middleware/jwt";
  *           example:
  *              title: 'example title'
  *              content: 'example content'
+ *       UpdatePostBody:
+ *           type: object
+ *           required:
+ *           properties:
+ *               title:
+ *                   type: string
+ *               content:
+ *                   type: string
+ *               sender:
+ *                   type: string
+ *           example:
+ *              title: 'example title'
+ *              content: 'example content'
+ *              sender: '123ggg5f6h7js8ee'
  */
 
 const router = express.Router();
@@ -124,6 +138,32 @@ router.get("/:post_id", async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @swagger
+ * /post:
+ *   post:
+ *       summary: Create a new post
+ *       tags: [Posts]
+ *       security:
+ *           - bearerAuth: []
+ *       requestBody:
+ *          required: true
+ *          content:
+ *             application/json:
+ *                schema:
+ *                  $ref: '#/components/schemas/PostBody'
+ *       responses:
+ *           200:
+ *               description: New post created
+ *               content:
+ *                   application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Post'
+ *           400:
+ *              description: Bad request
+ *           401:
+ *              description: Unauthorized
+ */
 router.post("/", async (req: Request, res: Response) => {
   const post = req.body;
 
@@ -134,6 +174,40 @@ router.post("/", async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @swagger
+ * /post/{id}:
+ *   put:
+ *       summary: Update a post
+ *       tags: [Posts]
+ *       security:
+ *           - bearerAuth: []
+ *       parameters:
+ *          - name: id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: string
+ *       requestBody:
+ *          required: true
+ *          content:
+ *             application/json:
+ *                schema:
+ *                  $ref: '#/components/schemas/UpdatePostBody'
+ *       responses:
+ *           200:
+ *               description: Post updated
+ *               content:
+ *                   application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Post'
+ *           400:
+ *              description: Bad request
+ *           401:
+ *              description: Unauthorized
+ *           404:
+ *              description: Not Found
+ */
 router.put("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   const post = req.body;
