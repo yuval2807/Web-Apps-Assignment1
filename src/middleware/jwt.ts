@@ -14,8 +14,7 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
   }
 
   if (!process.env.JWT_SECRET) {
-    res.status(400).send("Server Error");
-    return;
+    return res.status(400).send("Server Error");
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {

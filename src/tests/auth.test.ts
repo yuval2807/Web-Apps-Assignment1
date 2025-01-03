@@ -1,5 +1,3 @@
-process.env.NODE_ENV = "test";
-
 import { Express } from "express";
 import request from "supertest";
 import appInit from "../../server";
@@ -7,7 +5,6 @@ import appInit from "../../server";
 import mongoose from "mongoose";
 import userModel, { IUser } from "../models/user";
 import postModel from "../models/post";
-//import app from "../../app";
 
 let app: Express;
 
@@ -146,17 +143,22 @@ describe("Auth tests", () => {
   //     expect(response3.statusCode).not.toBe(200);
   //   });
 
+  test("Test logout - no token - should fail", async () => {
+    const responseLogout = await request(app).get("/auth/logout");
+    expect(responseLogout.statusCode).toBe(401);
+  });
+
   test("Test logout", async () => {
-    const response = await request(app).get("/auth/login").send(testUser);
-    testUser.accessToken = response.body.accessToken;
-    testUser.refreshToken = response.body.refreshToken;
+    const responseLogin = await request(app).get("/auth/login").send(testUser);
+    testUser.accessToken = responseLogin.body.accessToken;
+    testUser.refreshToken = responseLogin.body.refreshToken;
     expect(testUser.accessToken).toBeDefined();
     expect(testUser.refreshToken).toBeDefined();
 
-    const response2 = await request(app)
+    const responseLogout = await request(app)
       .get("/auth/logout")
       .set({ authorization: "Bearer " + testUser.refreshToken });
-    expect(response2.statusCode).toBe(200);
+    expect(responseLogout.statusCode).toBe(200);
 
     // const response3 = await request(app)
     //   .get("/auth/refresh")

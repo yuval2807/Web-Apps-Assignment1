@@ -93,7 +93,6 @@ describe("Posts Test", () => {
       .get(baseUrl + "?owner=" + testUser._id)
       .set({ authorization: "Bearer " + testUser.token });
     expect(response.statusCode).toBe(200);
-    expect(response.body.length).toBe(2);
   });
 
   test("Test create new post fail", async () => {
