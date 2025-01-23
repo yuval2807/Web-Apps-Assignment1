@@ -30,7 +30,7 @@ export const logout = async (refreshToken) => {
 
   return updateUserTokenById(
     user.id,
-    user.tokens.filter((token) => token !== refreshToken)
+    user.tokens?.filter((token) => token !== refreshToken)
   );
 };
 
