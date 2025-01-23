@@ -148,6 +148,8 @@ describe("Auth tests", () => {
     expect(responseLogout.statusCode).toBe(401);
   });
 
+  //jest.setTimeout(10000);
+
   test("Test logout", async () => {
     const responseLogin = await request(app).post("/auth/login").send(testUser);
     testUser.accessToken = responseLogin.body.accessToken;
@@ -165,6 +167,4 @@ describe("Auth tests", () => {
     //   .set({ authorization: "Bearer " + testUser.refreshToken });
     // expect(response3.statusCode).not.toBe(200);
   });
-
-  //jest.setTimeout(10000);
 });

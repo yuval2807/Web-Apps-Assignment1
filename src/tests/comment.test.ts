@@ -73,12 +73,26 @@ describe("Comments Test", () => {
     }
   });
 
-  test("Test get all post", async () => {
+  test("Test get all comments", async () => {
     const response = await request(app)
       .get(baseUrl)
       .set({ authorization: "Bearer " + testUser.token });
     expect(response.statusCode).toBe(200);
     expect(response.body.length).toBe(testComments.length);
+  });
+
+  test("Test get all comments by post id", async () => {
+    const response = await request(app)
+      .get(baseUrl + "?postId=" + testComments[0].post)
+      .set({ authorization: "Bearer " + testUser.token });
+    expect(response.statusCode).toBe(200);
+  });
+
+  test("Test get all comments - fail", async () => {
+    const response = await request(app)
+      .get(baseUrl + "?postId=" + "77777")
+      .set({ authorization: "Bearer " + testUser.token });
+    expect(response.statusCode).not.toBe(200);
   });
 
   test("Test get comment by id", async () => {
@@ -89,12 +103,50 @@ describe("Comments Test", () => {
     expect(response.body._id).toBe(testComments[0]._id);
   });
 
+  test("Test get comment by id - fail", async () => {
+    const response = await request(app)
+      .get(baseUrl + "/" + "848484")
+      .set({ authorization: "Bearer " + testUser.token });
+    expect(response.statusCode).not.toBe(200);
+  });
+
   test("Test filter comment by owner", async () => {
     const response = await request(app)
       .get(baseUrl + "?owner=" + testComments[0].user)
       .set({ authorization: "Bearer " + testUser.token });
     expect(response.statusCode).toBe(200);
     expect(response.body.length).toBe(2);
+  });
+
+  test("Test update comment by id", async () => {
+    const response = await request(app)
+      .put(baseUrl + "/" + testComments[0]._id)
+      .set({ authorization: "Bearer " + testUser.token })
+      .send({
+        message: "Test comment updated",
+      });
+    expect(response.statusCode).toBe(200);
+  });
+
+  test("Test update comment by id - fail - incorrect body ", async () => {
+    const response = await request(app)
+      .put(baseUrl + "/" + testComments[0]._id)
+      .set({ authorization: "Bearer " + testUser.token })
+      .send({
+        message: "Test comment updated",
+        post: "77777",
+      });
+    expect(response.statusCode).toBe(400);
+  });
+
+  test("Test update comment by id - fail - incorrect commentId", async () => {
+    const response = await request(app)
+      .put(baseUrl + "/" + "17925565c6ed86535a470da0")
+      .set({ authorization: "Bearer " + testUser.token })
+      .send({
+        message: "Test comment updated",
+      });
+    expect(response.statusCode).toBe(404);
   });
 
   test("Test Delete comment", async () => {
@@ -108,6 +160,14 @@ describe("Comments Test", () => {
       baseUrl + "/" + testComments[0]._id
     );
     expect(responseGet.statusCode).toBe(404);
+  });
+
+  test("Test Delete comment - fail", async () => {
+    const response = await request(app)
+      .delete(baseUrl + "/555")
+      .set({ authorization: "Bearer " + testUser.token });
+
+    expect(response.statusCode).toBe(400);
   });
 
   test("Test create new comment fail", async () => {

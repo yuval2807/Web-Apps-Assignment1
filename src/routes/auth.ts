@@ -161,6 +161,10 @@ router.get("/refresh", async (req: Request, res: Response) => {
   const authHeader = req.headers["authorization"];
   const refreshToken = authHeader && authHeader.split(" ")[1]; // פורמט: "Bearer <token>"
 
+  if (!refreshToken) {
+    return res.status(401).send("Refresh token missing");
+  }
+
   try {
     res.status(200).send(await refresh(refreshToken));
   } catch (err) {

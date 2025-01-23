@@ -88,11 +88,62 @@ describe("Posts Test", () => {
     expect(response.body._id).toBe(testPosts[0]._id);
   });
 
-  test("Test filter post by owner", async () => {
+  test("Test get post by id - fail", async () => {
     const response = await request(app)
-      .get(baseUrl + "?owner=" + testUser._id)
+      .get(baseUrl + "/" + "656565")
+      .set({ authorization: "Bearer " + testUser.token });
+    expect(response.statusCode).toBe(400);
+  });
+
+  test("Test get post by id - fail - post not found", async () => {
+    const response = await request(app)
+      .get(baseUrl + "/" + "671255646e4e8456c15594e0")
+      .set({ authorization: "Bearer " + testUser.token });
+    expect(response.statusCode).toBe(404);
+  });
+
+  test("Test filter post by sender", async () => {
+    const response = await request(app)
+      .get(baseUrl + "?sender=" + testUser._id)
       .set({ authorization: "Bearer " + testUser.token });
     expect(response.statusCode).toBe(200);
+  });
+
+  test("Test filter post by sender - fail", async () => {
+    const response = await request(app)
+      .get(baseUrl + "?sender=" + "121212")
+      .set({ authorization: "Bearer " + testUser.token });
+    expect(response.statusCode).toBe(400);
+  });
+
+  test("Test update post", async () => {
+    const response = await request(app)
+      .put(baseUrl + "/" + testPosts[0]._id)
+      .set({ authorization: "Bearer " + testUser.token })
+      .send({
+        content: "Post content updated",
+      });
+    expect(response.statusCode).toBe(200);
+  });
+
+  test("Test update post - fail", async () => {
+    const response = await request(app)
+      .put(baseUrl + "/656565")
+      .set({ authorization: "Bearer " + testUser.token })
+      .send({
+        content: "Post content updated",
+      });
+    expect(response.statusCode).toBe(400);
+  });
+
+  test("Test update post - fail - post not found", async () => {
+    const response = await request(app)
+      .put(baseUrl + "/671255646e4e8456c15594e0")
+      .set({ authorization: "Bearer " + testUser.token })
+      .send({
+        content: "Post content updated",
+      });
+    expect(response.statusCode).toBe(404);
   });
 
   test("Test create new post fail", async () => {
