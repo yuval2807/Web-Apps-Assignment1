@@ -21,7 +21,7 @@ export const login = async (
   const refreshToken = generateRefreshToken(user.id);
   updateRefreshToken(user, refreshToken);
 
-  return { accessToken, refreshToken };
+  return { accessToken, refreshToken, _id: user._id };
 };
 
 export const logout = async (refreshToken: string) => {
@@ -30,7 +30,7 @@ export const logout = async (refreshToken: string) => {
 
   return updateUserTokenById(
     user.id,
-    user.tokens.filter((token) => token !== refreshToken)
+    user.tokens?.filter((token) => token !== refreshToken)
   );
 };
 

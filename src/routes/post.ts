@@ -164,8 +164,9 @@ router.get("/:post_id", async (req: Request, res: Response) => {
  *           401:
  *              description: Unauthorized
  */
-router.post("/", async (req: Request, res: Response) => {
-  const post = req.body;
+router.post("/", authenticateToken, async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const post = { ...req.body, sender: userId };
 
   try {
     res.status(200).send(await addNewPost(post));
