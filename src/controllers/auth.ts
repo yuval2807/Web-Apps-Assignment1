@@ -24,7 +24,7 @@ export const login = async (
   return { accessToken, refreshToken, _id: user._id };
 };
 
-export const logout = async (refreshToken) => {
+export const logout = async (refreshToken: string) => {
   const user = await verifyRefreshToken(refreshToken);
   if (!user) throw new Error("User not found");
 

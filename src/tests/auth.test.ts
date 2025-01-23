@@ -61,7 +61,7 @@ describe("Auth tests", () => {
     expect(response2.statusCode).not.toBe(200);
 
     const response3 = await request(app)
-      .get(baseUrl + "/login")
+      .post(baseUrl + "/login")
       .send({
         email: testUser.email,
         password: "jhhgsfj",
@@ -69,7 +69,7 @@ describe("Auth tests", () => {
     expect(response3.statusCode).not.toBe(200);
 
     const response4 = await request(app)
-      .get(baseUrl + "/login")
+      .post(baseUrl + "/login")
       .send({
         email: "gggjfs",
         password: "jhhgsfj",
@@ -79,7 +79,7 @@ describe("Auth tests", () => {
 
   test("Auth test - login", async () => {
     const response = await request(app)
-      .get(baseUrl + "/login")
+      .post(baseUrl + "/login")
       .send(testUser);
     expect(response.statusCode).toBe(200);
     testUser.accessToken = response.body.accessToken;
@@ -149,7 +149,7 @@ describe("Auth tests", () => {
   });
 
   test("Test logout", async () => {
-    const responseLogin = await request(app).get("/auth/login").send(testUser);
+    const responseLogin = await request(app).post("/auth/login").send(testUser);
     testUser.accessToken = responseLogin.body.accessToken;
     testUser.refreshToken = responseLogin.body.refreshToken;
     expect(testUser.accessToken).toBeDefined();

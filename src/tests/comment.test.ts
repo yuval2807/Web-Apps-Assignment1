@@ -39,7 +39,7 @@ beforeAll(async () => {
   await commentsModel.deleteMany();
 
   await request(app).post("/auth/register").send(testUser);
-  const response = await request(app).get("/auth/login").send(testUser);
+  const response = await request(app).post("/auth/login").send(testUser);
   testUser.token = response.body.accessToken;
   testUser._id = response.body._id;
   expect(response.statusCode).toBe(200);
